@@ -87,7 +87,14 @@ extension String {
 
     /// Returns true if string starts with "0x"
     public var isHex: Bool {
-        return hasPrefix("0x")
+        
+        if hasPrefix("0x") {
+            return true
+        } else if hasPrefix("t") {
+            return true
+        }
+        
+        return false
     }
     
     /// Returns string with "0x" prefix (if !isHex)

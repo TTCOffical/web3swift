@@ -130,7 +130,7 @@ public struct Address {
         switch type {
         case .normal:
             // check for checksum
-            _address = addressString.withHex
+            _address = addressString.withoutHex.withHex
             self.type = .normal
         case .contractDeployment:
             _address = "0x"
@@ -142,7 +142,7 @@ public struct Address {
     /// - Parameter type: Address type. default: .normal
     /// - Important: addressData is not the utf8 format of hex string
     public init(_ addressData: Data, type: AddressType = .normal) {
-        _address = addressData.hex.withHex
+        _address = addressData.hex.withoutHex.withHex
         self.type = type
     }
     
