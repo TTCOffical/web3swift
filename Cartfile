@@ -1,2 +1,2 @@
 github "mxcl/PromiseKit" ~> 6.0
-github "attaswift/BigInt" ~> 3.1
+github "attaswift/BigInt" ~> 4.0.0
