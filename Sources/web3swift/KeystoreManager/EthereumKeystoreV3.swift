@@ -30,8 +30,8 @@ public class EthereumKeystoreV3: AbstractKeystore {
     public func UNSAFE_getPrivateKeyData(password: String, account: Address) throws -> Data {
         if addresses.count == 1 && account == addresses.last {
             guard let pk = try? self.getKeyData(password) else { throw AbstractKeystoreError.invalidPasswordError }
-            guard let privateKey = pk else { throw AbstractKeystoreError.invalidAccountError }
-            return privateKey
+//            guard let privateKey = pk else { throw AbstractKeystoreError.invalidAccountError }
+            return pk
         }
         throw AbstractKeystoreError.invalidAccountError
     }
@@ -114,7 +114,7 @@ public class EthereumKeystoreV3: AbstractKeystore {
         }
         guard aesCipher != nil else { throw AbstractKeystoreError.aesError }
         let encryptedKey = try aesCipher.encrypt(keyData!.bytes)
-        let encryptedKeyData = Data(bytes: encryptedKey)
+        let encryptedKeyData = Data(_: encryptedKey)
         var dataForMAC = Data()
         dataForMAC.append(last16bytes)
         dataForMAC.append(encryptedKeyData)
@@ -155,7 +155,7 @@ public class EthereumKeystoreV3: AbstractKeystore {
             let hashVariant = try HmacVariant(algo)
             guard let c = keystoreParams.crypto.kdfparams.c else { return nil }
             guard let derivedArray = try? BetterPBKDF(password: Array(password.utf8), salt: saltData.bytes, iterations: c, keyLength: derivedLen, variant: hashVariant) else { return nil }
-            passwordDerivedKey = Data(bytes: derivedArray)
+            passwordDerivedKey = Data(_: derivedArray)
         default:
             return nil
         }
@@ -182,7 +182,7 @@ public class EthereumKeystoreV3: AbstractKeystore {
             return nil
         }
         guard decryptedPK != nil else { return nil }
-        return Data(bytes: decryptedPK!)
+        return Data(_: decryptedPK!)
     }
 	
 	/// Returns json file encoded with v3 standard

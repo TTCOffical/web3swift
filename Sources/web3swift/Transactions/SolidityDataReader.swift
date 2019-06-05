@@ -71,12 +71,20 @@ public class SolidityDataReader {
     /// - Ignores zeroes
 	public func string32() throws -> String {
 		var data = try next(32)
-		let index = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Int? in
-			for i in 0..<data.count where pointer[i] == 0 {
-				return i
-			}
-			return nil
-		}
+        
+        let index = data.withUnsafeBytes { (pointer) -> Int? in
+            for i in 0..<data.count where pointer[i] == 0 {
+                return i
+            }
+            return nil
+        }
+        
+//        let index = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Int? in
+//            for i in 0..<data.count where pointer[i] == 0 {
+//                return i
+//            }
+//            return nil
+//        }
 		if let index = index {
 			data = data[0..<index]
 		}

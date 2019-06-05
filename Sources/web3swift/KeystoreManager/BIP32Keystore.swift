@@ -42,8 +42,8 @@ public class BIP32Keystore: AbstractKeystore {
     /// - Returns: private key for given address
     public func UNSAFE_getPrivateKeyData(password: String, account: Address) throws -> Data {
         guard let key = self.paths.key(of: account) else { throw AbstractKeystoreError.invalidAccountError }
-        guard let decryptedRootNode = try? self.getPrefixNodeData(password), decryptedRootNode != nil else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
-        guard let rootNode = HDNode(decryptedRootNode!) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
+        guard let decryptedRootNode = try? self.getPrefixNodeData(password) else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
+        guard let rootNode = HDNode(decryptedRootNode) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
         guard rootNode.depth == (rootPrefix.components(separatedBy: "/").count - 1) else { throw AbstractKeystoreError.encryptionError("Derivation depth mismatch") }
         //            guard rootNode.depth == HDNode.defaultPathPrefix.components(separatedBy: "/").count - 1 else { throw AbstractKeystoreError.encryptionError("Derivation depth mismatch") }
         guard let index = UInt32(key.components(separatedBy: "/").last!) else { throw AbstractKeystoreError.encryptionError("Derivation depth mismatch") }
@@ -114,8 +114,8 @@ public class BIP32Keystore: AbstractKeystore {
      So it wouldn't skip any index or create an existing account.
     */
     public func createNewChildAccount(password: String = "BANKEXFOUNDATION") throws {
-        guard let decryptedRootNode = try? self.getPrefixNodeData(password), decryptedRootNode != nil else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
-        guard let rootNode = HDNode(decryptedRootNode!) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
+        guard let decryptedRootNode = try? self.getPrefixNodeData(password) else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
+        guard let rootNode = HDNode(decryptedRootNode) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
         let prefixPath = rootPrefix
         guard rootNode.depth == prefixPath.components(separatedBy: "/").count - 1 else { throw AbstractKeystoreError.encryptionError("Derivation depth mismatch") }
         try createNewAccount(parentNode: rootNode, password: password)
@@ -146,8 +146,8 @@ public class BIP32Keystore: AbstractKeystore {
 
     /// Creates sub account using custom HDNode
     public func createNewCustomChildAccount(password: String = "BANKEXFOUNDATION", path: String) throws {
-        guard let decryptedRootNode = try? self.getPrefixNodeData(password), decryptedRootNode != nil else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
-        guard let rootNode = HDNode(decryptedRootNode!) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
+        guard let decryptedRootNode = try? self.getPrefixNodeData(password) else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
+        guard let rootNode = HDNode(decryptedRootNode) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
         let prefixPath = rootPrefix
         var pathAppendix: String?
         if path.hasPrefix(prefixPath) {
@@ -207,7 +207,7 @@ public class BIP32Keystore: AbstractKeystore {
             throw AbstractKeystoreError.aesError
         }
         guard let encryptedKey = try aesCipher?.encrypt(data!.bytes) else { throw AbstractKeystoreError.aesError }
-        let encryptedKeyData = Data(bytes: encryptedKey)
+        let encryptedKeyData = Data(_: encryptedKey)
         var dataForMAC = Data()
         dataForMAC.append(last16bytes)
         dataForMAC.append(encryptedKeyData)
@@ -251,7 +251,7 @@ public class BIP32Keystore: AbstractKeystore {
             let hashVariant = try HmacVariant(algo)
             guard let c = keystorePars.crypto.kdfparams.c else { return nil }
             guard let derivedArray = try? BetterPBKDF(password: Array(password.utf8), salt: saltData.bytes, iterations: c, keyLength: derivedLen, variant: hashVariant) else { return nil }
-            passwordDerivedKey = Data(bytes: derivedArray)
+            passwordDerivedKey = Data(_: derivedArray)
         default:
             return nil
         }
@@ -280,7 +280,7 @@ public class BIP32Keystore: AbstractKeystore {
         }
         guard decryptedPK != nil else { return nil }
         guard decryptedPK?.count == 82 else { return nil }
-        return Data(bytes: decryptedPK!)
+        return Data(_: decryptedPK!)
     }
     
     /// Returns Json file that you can store and export
@@ -292,8 +292,8 @@ public class BIP32Keystore: AbstractKeystore {
 
     /// Returns your root node string
     public func serializeRootNodeToString(password: String = "BANKEXFOUNDATION") throws -> String {
-        guard let decryptedRootNode = try? self.getPrefixNodeData(password), decryptedRootNode != nil else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
-        guard let rootNode = HDNode(decryptedRootNode!) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
+        guard let decryptedRootNode = try? self.getPrefixNodeData(password) else { throw AbstractKeystoreError.encryptionError("Failed to decrypt a keystore") }
+        guard let rootNode = HDNode(decryptedRootNode) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
         guard let string = rootNode.serializeToString(serializePublic: false) else { throw AbstractKeystoreError.encryptionError("Failed to deserialize a root node") }
         return string
     }

@@ -46,7 +46,7 @@ public enum Web3Error: Error {
 public extension Web3 {
     /// Returns web3 to work with local node at 127.0.0.1
     /// - Parameter port: Node port, default: 8545
-    public static func local(port: Int = 8545) throws -> Web3 {
+    static func local(port: Int = 8545) throws -> Web3 {
         guard let web3 = Web3(url: URL(string: "http://127.0.0.1:\(port)")!) else { throw Web3Error.connectionError }
         return web3
     }
