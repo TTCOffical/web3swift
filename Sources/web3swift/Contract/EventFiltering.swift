@@ -88,7 +88,7 @@ internal func encodeTopicToGetLogs(contract: ContractV2, eventName: String?, fil
                 let input = event!.inputs[i]
                 if filterValues != nil && !input.indexed { return nil }
                 if filterValues == nil {
-                    topics.append(nil as [String?]?)
+//                    topics.append(nil as [String?]?)
                     continue
                 }
                 var encodings = [String]()
