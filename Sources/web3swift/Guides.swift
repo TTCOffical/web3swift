@@ -15,6 +15,7 @@ public class Guide {
     
     ### Initializing Ethereum address
     
+     
     ```swift
     let coldWalletAddress: Address = "0x6a6a0b4aaa60E97386F94c5414522159b45DEdE8"
     let constractAddress: Address = "0x45245bc59219eeaaf6cd3f382e078a461ff9de7b"
