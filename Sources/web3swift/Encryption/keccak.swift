@@ -17,8 +17,15 @@ extension Data {
     
     /// - Returns: kaccak256 hash of data
     public func keccak256() -> Data {
-        var data = Data(count: 32)
-        keccak_256(data.mutablePointer(), 32, pointer, count)
-        return data
+//        var data = Data(count: 32)
+//        keccak_256(data.mutablePointer(), 32, pointer, count)
+//        return data
+        
+        let nsData = self as NSData
+        let input = nsData.bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
+        keccak_256(result, 32, input, data.count)
+        
+        return Data(bytes: result, count: 32)
     }
 }
