@@ -394,7 +394,8 @@ public class SolidityFunction: CustomStringConvertible {
     /// Formatted function
     public let function: String
     /// Function hash (function.keccak256()[0..<4])
-    public lazy var hash: Data = self.function.keccak256()[0..<4]
+//    public lazy var hash: Data = self.function.keccak256()[0..<4]
+    public lazy var hash: Data = TWTool.keccak256(self.function)[0..<4]
     /// init with function name
     public init(function: String) throws {
         let replaced = function.replacingOccurrences(of: " ", with: "")

@@ -39,9 +39,10 @@ extension String: EventFilterComparable {
     public func isEqualTo(_ other: AnyObject) -> Bool {
         switch other {
         case let oth as String:
-            return data.keccak256() == oth.data.keccak256()
+//            return data.keccak256() == oth.data.keccak256()
+            return TWTool.keccak256(data) == TWTool.keccak256(oth.data)
         case let oth as Data:
-            return data.keccak256() == oth.keccak256()
+            return TWTool.keccak256(data) == TWTool.keccak256(oth)
         default:
             return false
         }
@@ -56,13 +57,15 @@ extension Data: EventFilterComparable {
             if self == data {
                 return true
             }
-            let hash = data.keccak256()
+//            let hash = data.keccak256()
+            let hash = TWTool.keccak256(data)
             return self == hash
         case let oth as Data:
             if self == oth {
                 return true
             }
-            let hash = oth.keccak256()
+//            let hash = oth.keccak256()
+            let hash = TWTool.keccak256(oth)
             return self == hash
         default:
             return false

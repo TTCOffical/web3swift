@@ -113,7 +113,8 @@ extension Web3Utils {
                 stipped = stipped[1 ... 64]
             }
             guard stipped.count == 64 else { throw PublicKeyToAddressError.invalidPublicKeySize }
-            let sha3 = stipped.keccak256()
+//            let sha3 = stipped.keccak256()
+            let sha3 = TWTool.keccak256(stipped)
             let addressData = sha3[12 ..< 32]
             return addressData
         }
@@ -159,7 +160,8 @@ extension Web3Utils {
             data.append(prefixData)
             data.append(personalMessage)
         }
-        return data.keccak256()
+//        return data.keccak256()
+        return TWTool.keccak256(data)
     }
 
     /// Parse a user-supplied string using the number of decimals for particular Ethereum unit.
@@ -226,13 +228,15 @@ extension Web3Utils {
     /// returns Ethereum variant of sha3 (keccak256) of data. Returns nil is data is empty
     public static func keccak256(_ data: Data) -> Data? {
         if data.count == 0 { return nil }
-        return data.keccak256()
+//        return data.keccak256()
+        return TWTool.keccak256(data)
     }
 
     /// returns Ethereum variant of sha3 (keccak256) of data. Returns nil is data is empty
     public static func sha3(_ data: Data) -> Data? {
         if data.count == 0 { return nil }
-        return data.keccak256()
+//        return data.keccak256()
+        return TWTool.keccak256(data)
     }
 
     /// returns sha256 of data. Returns nil is data is empty

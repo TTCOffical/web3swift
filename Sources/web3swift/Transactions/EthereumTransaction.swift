@@ -56,7 +56,8 @@ public struct EthereumTransaction: CustomStringConvertible {
     public var hash: Data? {
         let chainId = inferedChainID ?? self.chainID
         guard let encoded = self.encode(forSignature: false, chainId: chainId) else { return nil }
-        return encoded.keccak256()
+//        return encoded.keccak256()
+        return TWTool.keccak256(encoded)
     }
     
     /// Init with transaction parameters
@@ -229,7 +230,8 @@ hash: \(String(describing: hash))
     /// - Returns: Transaction hash
     public func hashForSignature(chainID: NetworkId? = nil) -> Data? {
         guard let encoded = self.encode(forSignature: true, chainId: chainID) else { return nil }
-        return encoded.keccak256()
+//        return encoded.keccak256()
+        return TWTool.keccak256(encoded)
     }
 
     init(_ json: [String: Any]) throws {

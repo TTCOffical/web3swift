@@ -25,7 +25,24 @@ extension Data {
         let input = nsData.bytes.bindMemory(to: UInt8.self, capacity: self.count)
         let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
         keccak_256(result, 32, input, self.count)
-        
+
         return Data(bytes: result, count: 32)
+    }
+}
+
+class TWTool {
+    
+    static func keccak256(_ data: Data) -> Data {
+        
+        let nsData = data as NSData
+        let input = nsData.bytes.bindMemory(to: UInt8.self, capacity: data.count)
+        let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
+        keccak_256(result, 32, input, data.count)
+
+        return Data(bytes: result, count: 32)
+    }
+    
+    static func keccak256(_ string: String) -> Data {
+        return TWTool.keccak256(string.data)
     }
 }

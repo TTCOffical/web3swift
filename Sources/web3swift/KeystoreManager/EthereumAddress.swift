@@ -104,7 +104,10 @@ public struct Address {
     /// Converts address to checksum address
     public static func toChecksumAddress(_ addr: String) -> String? {
         let address = addr.lowercased().withoutHex
-        guard let hash = address.data(using: .ascii)?.keccak256().hex else { return nil }
+//        guard let hash = address.data(using: .ascii)?.keccak256().hex else { return nil }
+        guard let data = address.data(using: .ascii) else { return nil }
+        let hash = TWTool.keccak256(data).hex
+        
         var ret = "0x"
 
         for (i, char) in address.enumerated() {

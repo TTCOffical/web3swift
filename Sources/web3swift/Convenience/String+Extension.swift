@@ -21,7 +21,8 @@ extension String {
 extension String {
     /// - Returns: keccak256 hash of string
     public func keccak256() -> Data {
-        return data.keccak256()
+//        return data.keccak256()
+        return TWTool.keccak256(data)
     }
     var data: Data {
         return Data(utf8)

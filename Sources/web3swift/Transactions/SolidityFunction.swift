@@ -59,9 +59,11 @@ extension Array: SolidityDataRepresentable where Element == SolidityDataRepresen
         }
         return data
     }
+    
     func data(function: String) -> Data {
         var data = Data(capacity: count * 32 + 4)
-        data.append(function.keccak256()[0..<4])
+//        data.append(function.keccak256()[0..<4])
+        data.append(TWTool.keccak256(function)[0..<4])
         for element in self {
             data.append(element.solidityData)
         }

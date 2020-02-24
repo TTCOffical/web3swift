@@ -37,6 +37,7 @@ extension Address: EventFilterEncodable {
 
 extension String: EventFilterEncodable {
     public func eventFilterEncoded() -> String? {
-        return data.keccak256().hex.withHex
+//        return data.keccak256().hex.withHex
+        return TWTool.keccak256(data).hex.withHex
     }
 }
