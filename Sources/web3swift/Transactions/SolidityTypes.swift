@@ -424,6 +424,21 @@ public class SolidityFunction: CustomStringConvertible {
         }
         return data.done()
     }
+    
+    public func encode(_ arguments: [SolidityDataRepresentable], hash: Data) -> Data {
+        let data = SolidityDataWriter()
+        data.write(header: hash)
+        for i in 0..<types.count {
+            let type = types[i]
+            if i < arguments.count {
+                data.write(value: arguments[i], type: type)
+            } else {
+                data.write(type: type)
+            }
+        }
+        return data.done()
+    }
+    
     /// Description in format: "\(name)(\(types.map{ $0.description }.joined(separator: ",")))"
     public var description: String {
         return "\(name)(\(types.map{ $0.description }.joined(separator: ",")))"

@@ -418,7 +418,7 @@ public class Web3Eth: Web3OptionsInheritable {
 	/// - Returns: Maximum amount of gas that would be used in the transaction
 	/// - Throws: Error can also indicate that transaction is invalid in the current state, so formally it's gas limit is infinite.
 	/// An example of such transaction can be sending an amount of ETH that is larger than the current account balance.
-    func estimateGasPromise(_ transaction: EthereumTransaction, options: Web3Options? = nil, onBlock: String = "latest") -> Promise<BigUInt> {
+    public func estimateGasPromise(_ transaction: EthereumTransaction, options: Web3Options? = nil, onBlock: String = "latest") -> Promise<BigUInt> {
         let queue = web3.requestDispatcher.queue
         do {
             guard let request = EthereumTransaction.createRequest(method: .estimateGas, transaction: transaction, onBlock: onBlock, options: options) else {
