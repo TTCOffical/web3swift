@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-    spec.name         = 'web3swiftSuper.pod'
+    spec.name         = 'web3swiftSuper'
     spec.version      = '2.1.11'
     spec.ios.deployment_target = "8.0"
     spec.osx.deployment_target = "10.10"
@@ -10,9 +10,8 @@ Pod::Spec.new do |spec|
     spec.homepage     = 'https://github.com/TTCOffical/web3swift'
     spec.author       = 'Bankex Foundation'
     spec.source       = { :git => 'https://github.com/TTCOffical/web3swift.git', :tag => spec.version }
-    spec.source_files = 'Sources/web3swift/**/*.swift'
+    spec.source_files = 'Sources/web3swiftSuper/**/*.swift'
     spec.swift_version = '4.2'
-    spec.module_name = 'web3swift'
     spec.dependency 'PromiseKit', '6.8.4'
     spec.dependency 'BigInt', '~> 3.1'
     spec.dependency 'secp256k1.c', '~> 0.1'

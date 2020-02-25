@@ -223,7 +223,7 @@
 		13C3392A21B6C6D500F33F5E /* web3swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 13C3392921B6C6D400F33F5E /* web3swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		13CE02B221FC846900CE7148 /* Before Release.md in Resources */ = {isa = PBXBuildFile; fileRef = 13CE02B021FC846800CE7148 /* Before Release.md */; };
 		13CE02B321FC846900CE7148 /* How to build.md in Resources */ = {isa = PBXBuildFile; fileRef = 13CE02B121FC846900CE7148 /* How to build.md */; };
-		13CE02B521FC849400CE7148 /* web3swift.pod.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 13CE02B421FC849400CE7148 /* web3swift.pod.podspec */; };
+		13CE02B521FC849400CE7148 /* web3swiftSuper.pod.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 13CE02B421FC849400CE7148 /* web3swiftSuper.pod.podspec */; };
 		13D2576E21ADCD4400D382D1 /* DerivedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D2576D21ADCD4400D382D1 /* DerivedKey.swift */; };
 /* End PBXBuildFile section */
 
@@ -324,7 +324,7 @@
 		1317BE23218C8A9E00D6D095 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		1317BE24218C8A9E00D6D095 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		1317BE26218C8A9F00D6D095 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		1317BE27218C8A9F00D6D095 /* web3swift.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = web3swift.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1317BE27218C8A9F00D6D095 /* web3swiftSuper.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = web3swiftSuper.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1324A43A21BED4B800370D3C /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/README.md; sourceTree = "<group>"; };
 		13397054219984480027E27C /* SecurityToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityToken.swift; sourceTree = "<group>"; };
 		133970562199876A0027E27C /* ERC888.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC888.swift; sourceTree = "<group>"; };
@@ -453,7 +453,7 @@
 		13C3393421B6F41000F33F5E /* keccak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = keccak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CE02B021FC846800CE7148 /* Before Release.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "Before Release.md"; path = "web3swift.xcodeproj/Before Release.md"; sourceTree = "<group>"; };
 		13CE02B121FC846900CE7148 /* How to build.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "How to build.md"; path = "web3swift.xcodeproj/How to build.md"; sourceTree = "<group>"; };
-		13CE02B421FC849400CE7148 /* web3swift.pod.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = web3swift.pod.podspec; sourceTree = "<group>"; };
+		13CE02B421FC849400CE7148 /* web3swiftSuper.pod.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = web3swiftSuper.pod.podspec; sourceTree = "<group>"; };
 		13D2576D21ADCD4400D382D1 /* DerivedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerivedKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -538,8 +538,8 @@
 				1317BE26218C8A9F00D6D095 /* LICENSE.md */,
 				1317BE24218C8A9E00D6D095 /* Package.swift */,
 				1324A43B21BED4B800370D3C /* README.md */,
-				1317BE27218C8A9F00D6D095 /* web3swift.podspec */,
-				13CE02B421FC849400CE7148 /* web3swift.pod.podspec */,
+				1317BE27218C8A9F00D6D095 /* web3swiftSuper.podspec */,
+				13CE02B421FC849400CE7148 /* web3swiftSuper.pod.podspec */,
 				13CE02B021FC846800CE7148 /* Before Release.md */,
 				1317BCFD218C526300D6D095 /* Sources */,
 				1317BDD2218C526C00D6D095 /* Tests */,
@@ -563,7 +563,7 @@
 		1317BCFD218C526300D6D095 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				13C3385721B6C23800F33F5E /* web3swift */,
+				13C3385721B6C23800F33F5E /* web3swiftSuper */,
 				13A8D4F321B7447400469740 /* scrypt */,
 				13A8D4ED21B7446A00469740 /* keccak */,
 				13C3385821B6C26900F33F5E /* secp256k1 */,
@@ -873,7 +873,7 @@
 			path = Cryptor;
 			sourceTree = "<group>";
 		};
-		13C3385721B6C23800F33F5E /* web3swift */ = {
+		13C3385721B6C23800F33F5E /* web3swiftSuper */ = {
 			isa = PBXGroup;
 			children = (
 				13992BA521CBE7A50057BD93 /* Ethereum */,
@@ -896,7 +896,7 @@
 				1317BD59218C526300D6D095 /* Convenience */,
 				1317BD66218C526300D6D095 /* ObjectiveC */,
 			);
-			path = web3swift;
+			path = web3swiftSuper;
 			sourceTree = "<group>";
 		};
 		13C3385821B6C26900F33F5E /* secp256k1 */ = {
@@ -1218,7 +1218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13CE02B221FC846900CE7148 /* Before Release.md in Resources */,
-				13CE02B521FC849400CE7148 /* web3swift.pod.podspec in Resources */,
+				13CE02B521FC849400CE7148 /* web3swiftSuper.pod.podspec in Resources */,
 				13CE02B321FC846900CE7148 /* How to build.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
