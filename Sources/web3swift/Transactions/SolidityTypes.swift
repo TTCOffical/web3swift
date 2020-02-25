@@ -425,7 +425,7 @@ public class SolidityFunction: CustomStringConvertible {
         return data.done()
     }
     
-    public func encode(_ arguments: [SolidityDataRepresentable], hash: Data) -> Data {
+    public func encodeData(hash: Data, arguments: [SolidityDataRepresentable]) -> Data {
         let data = SolidityDataWriter()
         data.write(header: hash)
         for i in 0..<types.count {
