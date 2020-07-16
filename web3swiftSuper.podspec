@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
     spec.swift_version = '4.2'
     spec.dependency 'PromiseKit', '6.8.4'
     spec.dependency 'BigInt', '~> 3.1'
-    spec.dependency 'secp256k1.c'
+    spec.dependency 'secp256k1.c', '~> 0.1.2'
     spec.dependency 'keccak.c', '~> 0.1'
     spec.dependency 'scrypt.c', '~> 0.1'
 end
