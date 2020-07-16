@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
     spec.module_name = 'web3swift'
     spec.dependency 'PromiseKit', '6.8.4'
     spec.dependency 'BigInt', '~> 3.1'
-    spec.dependency 'secp256k1.c', '0.1.2'
+    spec.dependency 'secp256k1.c'
     spec.dependency 'keccak.c', '~> 0.1'
     spec.dependency 'scrypt.c', '~> 0.1'
 end
