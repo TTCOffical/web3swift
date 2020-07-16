@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name         = 'web3swiftSuper'
-    spec.version      = '2.1.12'
+    spec.version      = '2.1.13'
     spec.ios.deployment_target = "8.0"
     spec.osx.deployment_target = "10.10"
     spec.tvos.deployment_target = "9.0"
@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
     spec.swift_version = '4.2'
     spec.dependency 'PromiseKit', '6.8.4'
     spec.dependency 'BigInt', '~> 3.1'
-    spec.dependency 'secp256k1.c', '~> 0.1'
+    spec.dependency 'secp256k1.c', '0.1.2'
     spec.dependency 'keccak.c', '~> 0.1'
     spec.dependency 'scrypt.c', '~> 0.1'
 end
