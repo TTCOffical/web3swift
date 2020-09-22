@@ -1,0 +1,48 @@
+PODS:
+  - BigInt (3.1.0):
+    - SipHash (~> 1.2)
+  - keccak.c (0.1.3)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
+  - scrypt.c (0.1.1)
+  - secp256k1.c (0.1.2)
+  - SipHash (1.2.2)
+  - web3swift.pod (2.1.10):
+    - BigInt (~> 3.1)
+    - keccak.c (~> 0.1)
+    - PromiseKit (~> 6.4)
+    - scrypt.c (~> 0.1)
+    - secp256k1.c (~> 0.1)
+
+DEPENDENCIES:
+  - web3swift.pod
+
+SPEC REPOS:
+  trunk:
+    - BigInt
+    - keccak.c
+    - PromiseKit
+    - scrypt.c
+    - secp256k1.c
+    - SipHash
+    - web3swift.pod
+
+SPEC CHECKSUMS:
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  keccak.c: 859583afdaccb4e4fcc0f0096064d101580313f4
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
+  scrypt.c: b42ae06183251329d2b2c620c226fb541a4a3592
+  secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
+  SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
+  web3swift.pod: e3bd1c18a84e9fc1c4bfab8ebc0754b0806a7bcd
+
+PODFILE CHECKSUM: 4bb0d13a6000e2fb5fc5dc3525519448980f3dfd
+
+COCOAPODS: 1.9.3
