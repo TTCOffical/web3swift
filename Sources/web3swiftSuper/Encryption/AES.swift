@@ -158,7 +158,7 @@ struct AES128 {
         let constUnTypePointer = UnsafeRawPointer(point) // UnsafePointer<Int8> - > UnsafeRawPointer
         let unTypePointer = UnsafeMutableRawPointer(mutating: constUnTypePointer) // UnsafeRawPointer -> UnsafeMutableRawPointer
         
-        try CCCryptorFinal(cryptor, unTypePointer + outLength, outBytes.count, &outLength).check()
+        try CCCryptorFinal(cryptor, UnsafeMutableRawPointer(&outBytes + outLength), outBytes.count, &outLength).check()
         length += outLength
         
         return Data(bytes: UnsafePointer<UInt8>(outBytes), count: length)
