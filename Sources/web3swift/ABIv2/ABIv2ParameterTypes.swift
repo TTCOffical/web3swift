@@ -179,14 +179,14 @@ extension ABIv2.Element.Function {
 
     /// Function hash in hex
     public var methodString: String {
-//        return signature.keccak256().hex
-        return TWTool.keccak256(signature).hex
+        return signature.keccak256().hex
+//        return TWTool.keccak256(signature).hex
     }
     
     /// Function hash
     public var methodEncoding: Data {
-//        return signature.data(using: .ascii)!.keccak256()[0..<4]
-        return TWTool.keccak256(signature.data(using: .ascii)!)[0..<4]
+        return signature.data(using: .ascii)!.keccak256()[0..<4]
+//        return TWTool.keccak256(signature.data(using: .ascii)!)[0..<4]
     }
 }
 
@@ -200,8 +200,8 @@ extension ABIv2.Element.Event {
     
     /// Event hash
     public var topic: Data {
-//        return signature.data(using: .ascii)!.keccak256()
-        return TWTool.keccak256(signature.data(using: .ascii)!)
+        return signature.data(using: .ascii)!.keccak256()
+//        return TWTool.keccak256(signature.data(using: .ascii)!)
     }
 }
 

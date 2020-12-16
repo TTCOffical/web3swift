@@ -323,8 +323,8 @@ struct SECP256K1 {
     static func recoverSender(hash: Data, signature: Data) throws -> Address {
         let pubKey = try SECP256K1.recoverPublicKey(hash: hash, signature: signature, compressed: false)
         try pubKey.checkPublicKeySize()
-//        let addressData = Data(pubKey.keccak256()[12 ..< 32])
-        let addressData = Data(TWTool.keccak256(pubKey)[12 ..< 32])
+        let addressData = Data(pubKey.keccak256()[12 ..< 32])
+//        let addressData = Data(TWTool.keccak256(pubKey)[12 ..< 32])
         return Address(addressData)
     }
 

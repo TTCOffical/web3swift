@@ -10,39 +10,19 @@ import Foundation
 import keccak
 
 extension Data {
-    var pointer: UnsafePointer<UInt8>! { return withUnsafeBytes { $0 } }
-    mutating func mutablePointer() -> UnsafeMutablePointer<UInt8>! {
-        return withUnsafeMutableBytes { $0 }
-    }
     
     /// - Returns: kaccak256 hash of data
     public func keccak256() -> Data {
-//        var data = Data(count: 32)
-//        keccak_256(data.mutablePointer(), 32, pointer, count)
-//        return data
         
-        let nsData = self as NSData
-        let input = nsData.bytes.bindMemory(to: UInt8.self, capacity: self.count)
         let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
-        keccak_256(result, 32, input, self.count)
-
-        return Data(bytes: result, count: 32)
-    }
-}
-
-class TWTool {
-    
-    static func keccak256(_ data: Data) -> Data {
+        result.initialize(repeating: 0, count: 32)
+        defer {
+            result.deinitialize(count: 32)
+            result.deallocate()
+        }
+        var buffer = [UInt8](self)
+        keccak_256(result, 32, buffer, self.count)
         
-        let nsData = data as NSData
-        let input = nsData.bytes.bindMemory(to: UInt8.self, capacity: data.count)
-        let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
-        keccak_256(result, 32, input, data.count)
-
         return Data(bytes: result, count: 32)
-    }
-    
-    static func keccak256(_ string: String) -> Data {
-        return TWTool.keccak256(string.data)
     }
 }

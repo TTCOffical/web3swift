@@ -211,8 +211,8 @@ public class BIP32Keystore: AbstractKeystore {
         var dataForMAC = Data()
         dataForMAC.append(last16bytes)
         dataForMAC.append(encryptedKeyData)
-//        let mac = dataForMAC.keccak256()
-        let mac = TWTool.keccak256(dataForMAC)
+        let mac = dataForMAC.keccak256()
+//        let mac = TWTool.keccak256(dataForMAC)
         let kdfparams = KdfParamsV3(salt: saltData.hex, dklen: dkLen, n: N, p: P, r: R, c: nil, prf: nil)
         let cipherparams = CipherParamsV3(iv: IV.hex)
         let crypto = CryptoParamsV3(ciphertext: encryptedKeyData.hex, cipher: aesMode, cipherparams: cipherparams, kdf: "scrypt", kdfparams: kdfparams, mac: mac.hex, version: nil)
@@ -263,8 +263,8 @@ public class BIP32Keystore: AbstractKeystore {
         guard let cipherText = Data.fromHex(keystorePars.crypto.ciphertext) else { return nil }
         guard cipherText.count % 32 == 0 else { return nil }
         dataForMAC.append(cipherText)
-//        let mac = dataForMAC.keccak256()
-        let mac = TWTool.keccak256(dataForMAC)
+        let mac = dataForMAC.keccak256()
+//        let mac = TWTool.keccak256(dataForMAC)
         guard let calculatedMac = Data.fromHex(keystorePars.crypto.mac), mac.constantTimeComparisonTo(calculatedMac) else { return nil }
         let cipher = keystorePars.crypto.cipher
         let decryptionKey = derivedKey[0 ... 15]

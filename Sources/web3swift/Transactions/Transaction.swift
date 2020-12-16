@@ -61,8 +61,8 @@ class Transaction {
         if let networkId = networkId {
             write(networkId: networkId, to: data)
         }
-//        let hash = data.done().keccak256()
-        let hash = TWTool.keccak256(data.done())
+        let hash = data.done().keccak256()
+//        let hash = TWTool.keccak256(data.done())
         let signature = try privateKey.sign(hash: hash)
         return SignedTransaction(transaction: self, signature: signature, networkId: networkId)
     }

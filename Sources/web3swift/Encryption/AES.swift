@@ -98,11 +98,6 @@ private extension CCCryptorStatus {
         guard self == kCCSuccess else { throw AES128.Error.cryptoFailed(status: self) }
     }
 }
-private extension Data {
-    func pointer(_ body: (UnsafePointer<UInt8>?) throws -> ()) rethrows {
-        try withUnsafeBytes(body)
-    }
-}
 
 //PBKDF.deriveKey(fromPassword: mnemonics.decomposedStringWithCompatibilityMapping, salt: saltData, prf: .sha512, rounds: 2048, derivedKeyLength: 64)
 struct AES128 {
@@ -141,16 +136,27 @@ struct AES128 {
         var length = 0
         
         var cryptor: CCCryptorRef!
-        try iv.pointer { ivBytes in
-            try key.pointer { keyBytes in
-                try CCCryptorCreateWithMode(operation, mode.cc, CCAlgorithm(kCCAlgorithmAES128), padding.cc, ivBytes, keyBytes, key.count, nil, 0, 0, CCModeOptions(kCCModeOptionCTR_BE), &cryptor).check()
-            }
+        var status = try! iv.withUnsafeBytes({ ivBytes in
+            return try! key.withUnsafeBytes({ (keyBytes) in
+                return try! CCCryptorCreateWithMode(operation, mode.cc, CCAlgorithm(kCCAlgorithmAES128), padding.cc, ivBytes, keyBytes, key.count, nil, 0, 0, CCModeOptions(kCCModeOptionCTR_BE), &cryptor)
+            })
+        })
+        guard status == kCCSuccess else {
+            throw AES128.Error.cryptoFailed(status: status)
         }
-        try input.pointer { encryptedBytes in
-            try CCCryptorUpdate(cryptor, encryptedBytes, input.count, &outBytes, outBytes.count, &outLength).check()
+        
+        status = try! input.withUnsafeBytes({ (encryptedBytes) in
+            return try CCCryptorUpdate(cryptor, encryptedBytes, input.count, &outBytes, outBytes.count, &outLength)
+        })
+        guard status == kCCSuccess else {
+            throw AES128.Error.cryptoFailed(status: status)
         }
+        
         length += outLength
-        try CCCryptorFinal(cryptor, UnsafeMutableRawPointer(&outBytes + outLength), outBytes.count, &outLength).check()
+        status = CCCryptorFinal(cryptor, UnsafeMutableRawPointer(&outBytes + outLength), outBytes.count, &outLength)
+        guard status == kCCSuccess else {
+            throw AES128.Error.cryptoFailed(status: status)
+        }
         length += outLength
         
         return Data(bytes: UnsafePointer<UInt8>(outBytes), count: length)
